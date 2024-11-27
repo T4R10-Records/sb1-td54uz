@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="{{ settings.accent_color }}">
+
+    <title>{{ page_title | escape }}</title>
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    
+    <!-- Component styles -->
+    {{ 'product-card.css' | asset_url | stylesheet_tag }}
+    {{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
+    {{ 'quick-view.css' | asset_url | stylesheet_tag }}
+    {{ 'product-filters.css' | asset_url | stylesheet_tag }}
+    {{ 'pack-builder.css' | asset_url | stylesheet_tag }}
+    {{ 'sections/hero.css' | asset_url | stylesheet_tag }}
+    {{ 'sections/stats.css' | asset_url | stylesheet_tag }}
+
+    <!-- Deferred scripts -->
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>
+    <script src="{{ 'product-card.js' | asset_url }}" defer></script>
+    <script src="{{ 'quick-view.js' | asset_url }}" defer></script>
+    <script src="{{ 'product-filters.js' | asset_url }}" defer></script>
+    <script src="{{ 'pack-builder.js' | asset_url }}" defer></script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    {% section 'header' %}
+
+    <main role="main" id="MainContent">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    {% render 'cart-drawer' %}
+    {% render 'quick-view-modal' %}
+  </body>
+</html>
